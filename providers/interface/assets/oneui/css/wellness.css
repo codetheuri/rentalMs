@@ -1,0 +1,54 @@
+nav#sidebar {
+    background-color: #1a1a34!important;
+    color: rgb(0, 0, 0) !important;
+}
+
+nav#sidebar .nav-main-link {
+    color: #ffffff !important;
+    
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+}
+
+nav#sidebar .nav-main-link:hover {
+    background-color: #2b7cab !important;
+}
+.card-header{
+
+    background-color: #012437 !important;
+    color: #ffffff !important;
+    font-weight: 500;
+    /* padding: 1rem; */
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+nav#sidebar .content-header {
+    background-color: #1a1a34!important;
+    color: #000102 !important;
+    
+    font-weight: 500;
+    padding: 1.5rem;
+    text-align: center;
+}
+
+nav#sidebar .content-header img {
+    max-height: 50px;
+    border-radius: 8px;
+}
+nav#sidebar .nav-main-link i {
+    color: rgb(255, 255, 255);
+    transition: transform 0.3s ease;
+    font-size: 1.5rem;  /* Adjust as needed */
+    width: 24px;
+    height: 24px;
+    line-height: 1
+}
+
+nav#sidebar .nav-main-link:hover i {
+    transform: scale(1.1);  /* Scale the icon slightly */
+}
+/* .block.block-rounded .block-header {
+    background-color: #012437 !important;
+} */
