@@ -2,6 +2,7 @@
 
 use helpers\Html;
 use helpers\widgets\ActiveForm;
+use yii\helpers\Url;
 
 /** @var yii\web\View $this */
 use ui\bundles\DashboardAsset;
@@ -66,7 +67,8 @@ DashboardAsset::register($this);
                 </div>
             </div>
             <div class="block-content block-content-full bg-body-light text-center">
-                <a href="#" class="fs-sm text-muted">Forgot Password?</a>
+              
+                <a class="fs-sm text-muted" href="<?=Url::to(['/dashboard/site/landing'])?>">Go Back to Dashboard</a>
             </div>
         </div>
         <!-- END Sign In Block -->

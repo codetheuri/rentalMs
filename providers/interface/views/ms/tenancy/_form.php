@@ -61,7 +61,7 @@ $vacantUnits = $vacantUnitsQuery->all();
                         return $user->username; // or $user->full_name if available
                     }
                 ),
-                ['prompt' => 'Select Tenant']
+                ['prompt' => 'Select Tenant username']
             ) ?>
         </div>
 

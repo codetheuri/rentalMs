@@ -13,7 +13,7 @@ class DashboardController extends  \yii\web\Controller
                 'class' => \yii\filters\AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['register', 'login', 'error', 'request-password-reset', 'reset-password'],
+                        'actions' => ['register', 'login', 'landing', 'error', 'request-password-reset', 'reset-password'],
                         'allow' => true,
                     ],
                     [

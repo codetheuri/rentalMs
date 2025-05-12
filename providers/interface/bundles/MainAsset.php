@@ -17,6 +17,7 @@ class MainAsset extends AssetBundle
         ],
         'peafowl/css/theme.css',
         'peafowl/css/style.css',
+        'oneui/css/wellness.css',
     ];
     public $js = [
     ];

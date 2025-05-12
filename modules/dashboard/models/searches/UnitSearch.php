@@ -5,6 +5,7 @@ namespace dashboard\models\searches;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use dashboard\models\Unit;
+use Yii;
 
 /**
  * UnitSearch represents the model behind the search form of `dashboard\models\Unit`.
@@ -41,52 +42,43 @@ class UnitSearch extends Unit
      *
      * @return ActiveDataProvider
      */
+
     public function search($params)
     {
+        $query = Unit::find()->alias('u')->where(['u.is_deleted' => 0]);
+
+        // 🧠 Only show units of properties owned by this user
+        // if (Yii::$app->user->can('dashboard-property-create')) {
+        //     $query->joinWith('property p')->andWhere(['p.owner_id' => Yii::$app->user->id]);
+        // } elseif (\Yii::$app->user->can('dashboard-property-delete')) {
+        //     $query = Unit::find();
+        // }
+
         $query = Unit::find();
 
-        // add conditions that should always apply here
-
+        // existing dataProvider logic
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
-            'pagination' => [ 'defaultPageSize' => \Yii::$app->params['defaultPageSize'], 'pageSizeLimit' => [1, \Yii::$app->params['pageSizeLimit']]],
-            'sort'=> ['defaultOrder' => ['created_at'=>SORT_DESC]]
+            'pagination' => ['pageSize' => 20],
+            'sort' => ['defaultOrder' => ['id' => SORT_DESC]],
         ]);
 
+        // load filters
         $this->load($params);
-
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            $query->where('0=1');
             return $dataProvider;
         }
 
-        // grid filtering conditions
-        if(isset($this->globalSearch)){
-                $query->orFilterWhere([
-            'id' => $this->globalSearch,
-            'property_id' => $this->globalSearch,
-            'monthly_rent' => $this->globalSearch,
-            'status_id' => $this->globalSearch,
-            'is_deleted' => $this->globalSearch,
-            'created_at' => $this->globalSearch,
-            'updated_at' => $this->globalSearch,
+        // Apply additional filters here (unit_number, rent, etc)
+        $query->andFilterWhere([
+            'u.id' => $this->id,
+            'u.monthly_rent' => $this->monthly_rent,
+            'u.status_id' => $this->status_id,
+            'u.property_id' => $this->property_id,
         ]);
 
-        $query->orFilterWhere(['like', 'unit_number', $this->globalSearch]);
-        }else{
-                $query->andFilterWhere([
-            'id' => $this->id,
-            'property_id' => $this->property_id,
-            'monthly_rent' => $this->monthly_rent,
-            'status_id' => $this->status_id,
-            'is_deleted' => $this->is_deleted,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
-        ]);
+        $query->andFilterWhere(['like', 'u.unit_number', $this->unit_number]);
 
-        $query->andFilterWhere(['like', 'unit_number', $this->unit_number]);
-        }
         return $dataProvider;
     }
 }

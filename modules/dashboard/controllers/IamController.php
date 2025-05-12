@@ -27,7 +27,8 @@ class IamController extends \helpers\DashboardController
     {
         Yii::$app->user->logout();
 
-        return $this->goHome();
+        // return $this->goHome();
+        return $this->redirect(['/dashboard/site/landing']);
     }
     
 }

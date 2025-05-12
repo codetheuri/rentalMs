@@ -21,7 +21,7 @@ class SiteController extends \helpers\DashboardController
         return array_merge(parent::behaviors(),  [
             [
                 'class' => 'yii\filters\ContentNegotiator',
-                'only' => ['index'],
+                'only' => ['index','landing'],
                 'formats' => [
                     'application/json' => Response::FORMAT_HTML,
                 ],
@@ -109,6 +109,11 @@ public function actionExportCsv()
 
     fclose($fp);
     Yii::$app->end();
+}
+public function actionLanding()
+{
+    $this->layout = 'landing'; // not 'dashboard' or 'admin'
+    return $this->render('landing');
 }
 
 

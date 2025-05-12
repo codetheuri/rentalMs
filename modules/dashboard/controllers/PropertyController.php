@@ -64,6 +64,7 @@ class PropertyController extends DashboardController
     // }
     public function actionCreate()
 {
+    Yii::$app->user->can('dashboard-property-create');
     $model = new Property();
 
     if ($model->load(Yii::$app->request->post()) && $model->save()) {

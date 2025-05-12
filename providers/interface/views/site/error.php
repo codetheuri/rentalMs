@@ -27,9 +27,9 @@ $this->title = $name;
                         <p class="mb-1">
                             The above error occurred while the Web server was processing your request.
                         </p>
-                        <a class="link-fx" href="<?=Url::to(['/dashboard'])?>">Go Back to Dashboard</a>
+                        <a class="link-fx" href="<?=Url::to(['/dashboard/site/landing'])?>">Go Back to Dashboard</a>
                         <br>
-                        <a class="link-fx" href="<?=Url::to(['/dashboard/iam/logout'])?>">Go Back to Login</a> 
+                        <a class="link-fx" href="<?=Url::to(['/dashboard/site/landing'])?>">Go Back to Login</a> 
                   
                     </h2>
                     <!-- END Error Header -->

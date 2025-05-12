@@ -73,7 +73,7 @@ $config = [
             'class' => \helpers\auth\AuthUser::class,
             'identityClass' => 'auth\models\User',
             'enableAutoLogin' => false,
-            'loginUrl' => ['dashboard/iam/login'],
+            'loginUrl' => ['dashboard/site/landing'],
             'identityCookie' => ['name' => '_identity-' . $_ENV['APP_CODE'], 'httpOnly' => true]
         ],
         'authManager' => [
@@ -133,6 +133,7 @@ $config = [
             'showScriptName' => false,
             'rules' => [
                 'api/mpesa/callback' => '/dashboard/billing/callback',
+                'dashboard' => '/dashboard/site/dashboard',
                 $_ENV['APP_VERSION'] . '/about' => 'site/about',
                 [
                     'pattern' => $_ENV['APP_VERSION'] . '/docs/openapi-json-resource',

@@ -74,8 +74,11 @@ $this->params['breadcrumbs'][] = $this->title;
           <?= $this->render('_search', ['model' => $searchModel]); ?>
         </div>
 
+
+        <?php if (Yii::$app->user->can('dashboard-tenancy-create', false)) : ?>
         <?= GridView::widget([
           'dataProvider' => $dataProvider,
+          
           'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
@@ -87,12 +90,17 @@ $this->params['breadcrumbs'][] = $this->title;
               'label' => 'Unit',
             ],
 
-            [
+          
+            Yii::$app->user->can('dashboard-tenancy-create', true) ? [
               'attribute' => 'tenant_id',
               'value' => function ($model) {
                 return $model->tenant ? $model->tenant->username : null;
               },
               'label' => 'Tenant',
+            ] : [
+              'label' => 'Tenant',
+              'value'=> "not allowed",
+              'visible' => false
             ],
 
             'start_date',
@@ -104,7 +112,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 return $model->unit ? ($model->unit->monthly_rent) . ' Ksh' : null;
               },
             ],
-            [
+
+            Yii::$app->user->can('dashboard-tenancy-create', true) ? [
               'attribute' => 'payment_status',
               'format' => 'raw',
               'label' => 'Payment Status',
@@ -115,6 +124,10 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 return "<span style='background: {$color}; color: white; padding: 4px 8px; border-radius: 4px;'>{$status}</span>";
               },
+            ]: [
+              'label' => 'Payment Status',
+              'value'=> "not allowed",
+              'visible' => false
             ],
 
 
@@ -155,7 +168,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
           ],
+
         ]); ?>
+        <?php else : ?>
+        <div class="alert alert-warning">You do not have permission to  tenancies.</div>
+        <?php endif; ?>
 
 
       </div>

@@ -63,7 +63,7 @@ class Tenancy extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'unit_id' => 'Unit ID',
-            'tenant_id' => 'Tenant ID',
+            'tenant_id' => 'Tenant username',
             'start_date' => 'Start Date',
             'end_date' => 'End Date',
             'payment_status' => 'Payment Status',
@@ -92,6 +92,14 @@ class Tenancy extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Unit::class, ['id' => 'unit_id']);
     }
+    public function getProperty()
+    {
+        return $this->unit->property; // assuming through unit
+    }
+    // public function getProperty()
+    // {
+    //     return $this->hasOne(Property::class, ['id' => 'property_id'])->via('unit');
+    // }
     public static function getPaymentStatusList()
     {
         return [

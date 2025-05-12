@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
               'type' => 'text',
               'text' => 'Create Maintenance Request',
               'theme' => 'primary',
-              'visible' => Yii::$app->user->can('dashboard-management-request-create', true)
+              'visible' => Yii::$app->user->can('dashboard-management-request-list', true)
             ],
             'modal' => ['title' => 'New Maintenance Request']
           ]) ?>

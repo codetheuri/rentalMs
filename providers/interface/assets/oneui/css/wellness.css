@@ -49,6 +49,7 @@ nav#sidebar .nav-main-link i {
 nav#sidebar .nav-main-link:hover i {
     transform: scale(1.1);  /* Scale the icon slightly */
 }
+
 /* .block.block-rounded .block-header {
     background-color: #012437 !important;
 } */
